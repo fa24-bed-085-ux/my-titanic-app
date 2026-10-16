@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Model load karna (apni model file ka naam yahan 'model.pkl' rakhein)
-model = joblib.load('model.pkl')
+# Model load karna (aapki file ka exact naam)
+model = joblib.load('svc_trained_model.pkl')
 
 st.title('Titanic Survival Prediction App')
 st.write('Apni details niche darj karein aur check karein ki prediction kya aati hai!')
