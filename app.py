@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Model load karna (aapki file ka exact naam)
+# Load the trained model
 model = joblib.load('svc_trained_model.pkl')
 
 st.title('Titanic Survival Prediction App')
-st.write('Apni details niche darj karein aur check karein ki prediction kya aati hai!')
+st.write('Enter your details below to check the survival prediction!')
 
 # Input fields based on your model features: PClass, Gender, Sibling, Embarked
 pclass = st.selectbox('Passenger Class (PClass)', [1, 2, 3])
@@ -16,15 +16,15 @@ embarked = st.selectbox('Embarked Port (0 = C, 1 = Q, 2 = S)', [0, 1, 2])
 
 # Prediction button
 if st.button('Predict'):
-    # Input data ko DataFrame mein convert karna
+    # Convert input data into a DataFrame
     input_data = pd.DataFrame([[pclass, gender, sibling, embarked]], 
                               columns=['PClass', 'Gender', 'Sibling', 'Embarked'])
     
-    # Model se prediction lena
+    # Make prediction using the model
     prediction = model.predict(input_data)
     
-    # Result show karna
+    # Show the result
     if prediction[0] == 1:
-        st.success('Mubarak ho! Passenger ke survive karne ka chance hai. 🎉')
+        st.success('Congratulations! The passenger has a chance of survival. ')
     else:
-        st.warning('Passenger ke survive karne ka chance kam hai. ⚠️')
+        st.warning('The passenger has a lower chance of survival. ')
